@@ -9,7 +9,7 @@ const passport = require('passport');
 require("./config/passport")(passport)
 
 //mongoose
-mongoose.connect('mongodb://localhost/test',{useNewUrlParser: true, useUnifiedTopology : true})
+mongoose.connect('mongodb+srv://admin:admin@cluster0.uuenu.mongodb.net/tori-db?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology : true})
 .then(() => console.log('connected,,'))
 .catch((err)=> console.log(err));
 //EJS
