@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const User = require("../models/user");
 const Product = require("../models/product");
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const { render } = require('ejs');
@@ -133,6 +134,19 @@ router.post('/addProduct', (req,res) => {
 
 
 })
+
+router.get('/Products', function (req,res) {
+    Product.find({}, function (err,data) {
+        res.render('products', {
+            user : req.user,
+            practices: data
+        })
+    })
+})
+
+
+
+
 
 
 
