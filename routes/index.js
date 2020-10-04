@@ -17,11 +17,7 @@ router.get('/dashboard',ensureAuthenticated,(req,res)=>{
         });
     })
 
-router.get('/addProduct', ensureAuthenticated,(req,res) => {
-    res.render('addProduct',  {
-        
 
-        });
-    })
+
 
 module.exports = router; 

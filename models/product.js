@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { stringify } = require('querystring')
 const productSchema = new mongoose.Schema({
     title :{
         type : String,
@@ -26,11 +25,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         required : true
     },
-    date : {
-        type : Date,
-        default: Date.now
-
-    },
     delivery_type : {
         type: String,
         required : true
@@ -42,8 +36,15 @@ const productSchema = new mongoose.Schema({
     phone_number : {
         type: String,
         required : true
+    },
+    date : {
+        type : Date,
+        default: Date.now
+
     }
 
 
 });
-const user = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;

@@ -1,7 +1,7 @@
 <h1>Add product </h1>
 <%- include ('./partials/messages') %>
 
-<form action ="/addProduct" method ="POST">
+<form action ="/users/addProduct" method ="POST">
 <div>
     <label for="">title</label>
     <input
@@ -13,7 +13,7 @@
 </div>
 
 <div>
-    <label for="description"></label>
+    <label for="description">description</label>
     <input
     type="description"
     name="description"
@@ -23,7 +23,7 @@
 </div>
 
 <div>
-    <label for="category"></label>
+    <label for="category">category</label>
     <input
     type="category"
     name="category"
@@ -33,7 +33,17 @@
 </div>
 
 <div>
-    <label for="images"></label>
+    <label for="category">location</label>
+    <input
+    type="location"
+    name="location"
+    placeholder="Enter location"
+    value="<%= typeof name != 'undefined' ? location : '' %>"
+    />
+</div>
+
+<div>
+    <label for="images">images</label>
     <input
     type="images"
     name="images"
@@ -43,7 +53,7 @@
 </div>
 
 <div>
-    <label for="asking_price"></label>
+    <label for="asking_price">asking_price</label>
     <input
     type="asking_price"
     name="asking_price"
@@ -53,18 +63,7 @@
 </div>
 
 <div>
-    <label for=""></label>
-    <input
-    type=""
-    name=""
-    placeholder=""
-    value="<%= typeof name != 'undefined' ? * : '' %>"
-    />
-
-</div>
-
-<div>
-    <label for="delivery_type"></label>
+    <label for="delivery_type">delivery_price</label>
     <input
     type="delivery_type"
     name="delivery_type"
@@ -75,7 +74,7 @@
 </div>
 
 <div>
-    <label for="name"></label>
+    <label for="name">name</label>
     <input
     type="name"
     name="name"
@@ -86,19 +85,19 @@
 </div>
 
 <div>
-    <label for="phone_number"></label>
+    <label for="phone_number">Phone number</label>
     <input
     type="phone_number"
     name="phone_number"
     placeholder="phone_number"
     value="<%= typeof name != 'undefined' ? phone_number : '' %>"
-    
-    
-    
-    
-    />
 
+    />
 </div>
+
+<button type="submit" class="btn btn-primary btn-block">
+    Add product
+  </button>
 
 
 

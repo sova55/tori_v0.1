@@ -2,9 +2,11 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user");
+const Product = require("../models/product");
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const { render } = require('ejs');
+const {ensureAuthenticated} = require("../config/auth.js")
 //login handle
 router.get('/login',(req,res)=>{
     res.render('login');
@@ -12,6 +14,12 @@ router.get('/login',(req,res)=>{
 router.get('/register',(req,res)=>{
     res.render('register')
     })
+
+router.get('/addProduct', ensureAuthenticated,(req,res) => {
+    res.render('addProduct')
+            
+    
+    })    
 //Register handle
 router.post('/login',(req,res,next)=>{
     passport.authenticate('local',{
@@ -86,6 +94,47 @@ router.get('/logout',(req,res)=>{
     req.flash('success_msg','Now logged out');
     res.redirect('/users/login');
  })
+
+//products 
+
+router.post('/addProduct', (req,res) => {
+    const {title, description, category, location, images, asking_price, delivery_type, 
+    name, phone_number} = req.body;
+    let errors = [];
+    console.log('testi');
+    if(!title || !description || !category || !location || !images || !asking_price 
+        || !delivery_type || !name || !phone_number ) {
+            errors.push({msg: 'Please fill in all fields'});
+    }
+    else { 
+        Product.findOne({title : title}).exec((err,product)=> {
+            console.log(product);
+            if (product) {
+                error.push({msg: 'product name already added'});
+            }
+            else {
+                const newProduct = new Product({
+                    title : title,
+                    description : description,
+                    category : category,
+                    location : location,
+                    images : images,
+                    asking_price : asking_price,
+                    delivery_type : delivery_type,
+                    name : name,
+                    phone_number : phone_number
+                });
+                newProduct.save();
+            }
+
+        })
+
+    }
+
+
+})
+
+
 
 
 module.exports  = router;
