@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const { render } = require('ejs');
-const {ensureAuthenticated} = require("../config/auth.js")
+const {ensureAuthenticated} = require("../config/auth.js");
+const e = require('express');
 //login handle
 router.get('/login',(req,res)=>{
     res.render('login');
@@ -126,6 +127,7 @@ router.post('/addProduct', (req,res) => {
                     phone_number : phone_number
                 });
                 newProduct.save();
+                res.redirect('/dashboard');
             }
 
         })
@@ -139,9 +141,24 @@ router.get('/Products', function (req,res) {
     Product.find({}, function (err,data) {
         res.render('products', {
             user : req.user,
-            practices: data
+            data : data
         })
     })
+})
+
+router.post('/delete', function(req, res, next) {
+    var id = req.body.id;
+        Product.findByIdAndRemove(id).exec();
+    res.redirect('/users/Products');
+   });
+
+router.post('/update', function (req,res,next) {
+    var id = req.body.id;
+    Product.findById(id, function (err,doc) {
+        if (err) {return err;}
+        doc.title = 'Testi';
+    })
+
 })
 
 

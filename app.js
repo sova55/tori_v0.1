@@ -6,17 +6,19 @@ const expressEjsLayout = require('express-ejs-layouts')
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 require("./config/passport")(passport)
 
 //mongoose
 //no password
-mongoose.connect('mongodb+srv://admin:@cluster0.uuenu.mongodb.net/tori-db?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology : true})
+mongoose.connect('mongodb+srv://admin:admin@cluster0.uuenu.mongodb.net/tori-db?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology : true})
 .then(() => console.log('connected,,'))
 .catch((err)=> console.log(err));
 //EJS
 app.set('view engine','ejs');
 app.use(expressEjsLayout);
 //express session
+app.use(bodyParser.urlencoded({ extended : true}));
 app.use(session({
     secret : 'secret',
     resave : true,

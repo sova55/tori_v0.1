@@ -1,4 +1,161 @@
-<% practices.forEach(function (practice) { %>
-    <%= practice.title %>
-    <%= practice.location %> 
-<% }) %>
+
+
+
+<% data.forEach(function(product){  %>
+    <tr>
+     Title : <td><%- product.title %></td>,
+     Description : <td><%- product.description %></td>,
+     Category : <td><%- product.category %></td>,
+     Location : <td><%- product.location %></td>,
+     Images : <td><%- product.images %></td>,
+     Asking price : <td><%- product.asking_price %></td>,
+     Delivery type : <td><%- product.delivery_type %></td>,
+     Name : <td><%- product.name %></td>,
+     Phone number : <td><%- product.phone_number %></td>,
+     Date : <td><%- product.date %></td>,
+     ID : <td><%- product._id %></td>
+          <BR>
+    </tr>
+<%})%>
+
+
+<form action="/users/delete" method="POST">
+    <div>
+        <label for="">Insert ID you want to delete</label>
+        <input
+        type="id"
+        name="id"
+        placeholder="Add ID"
+        value="<%= typeof name != 'undefined' ? id : '' %>"
+        />
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">
+        
+        Remove ID
+      </button>
+    </form>
+
+<a href="addProduct">Add products</a>
+
+<form action ="/users/update" method ="POST">
+    <div>
+        <label for="">title</label>
+        <input
+        type="title"
+        name="title"
+        placeholder="Enter title"
+        value="<%= typeof name != 'undefined' ? title :  '' %>"
+        />
+    </div>
+    
+    <div>
+        <label for="description">description</label>
+        <input
+        type="description"
+        name="description"
+        placeholder="Enter description"
+        value="<%= typeof name != 'undefined' ? description : '' %>"
+        />
+    </div>
+    
+    <div>
+        <label for="category">category</label>
+        <input
+        type="category"
+        name="category"
+        placeholder="Enter category"
+        value="<%= typeof name != 'undefined' ? category : '' %>"
+        />
+    </div>
+    
+    <div>
+        <label for="category">location</label>
+        <input
+        type="location"
+        name="location"
+        placeholder="Enter location"
+        value="<%= typeof name != 'undefined' ? location : '' %>"
+        />
+    </div>
+    
+    <div>
+        <label for="images">images</label>
+        <input
+        type="images"
+        name="images"
+        placeholder="Enter images"
+        value="<%= typeof name != 'undefined' ? images : '' %>"
+        />
+    </div>
+    
+    <div>
+        <label for="asking_price">asking_price</label>
+        <input
+        type="asking_price"
+        name="asking_price"
+        placeholder="Enter asking price"
+        value="<%= typeof name != 'undefined' ? asking_price : '' %>"
+        />
+    </div>
+    
+    <div>
+        <label for="delivery_type">delivery_price</label>
+        <input
+        type="delivery_type"
+        name="delivery_type"
+        placeholder="Enter delivery type"
+        value="<%= typeof name != 'undefined' ? delivery_type : '' %>"
+    
+        />
+    </div>
+    
+    <div>
+        <label for="name">name</label>
+        <input
+        type="name"
+        name="name"
+        placeholder="Enter name"
+        value="<%= typeof name != 'undefined' ? name : '' %>"
+    
+        />
+    </div>
+    
+    <div>
+        <label for="phone_number">Phone number</label>
+        <input
+        type="phone_number"
+        name="phone_number"
+        placeholder="phone_number"
+        value="<%= typeof name != 'undefined' ? phone_number : '' %>"
+    
+        />
+    </div>
+    <div>
+        <label for="date">date</label>
+        <input
+        type="date"
+        name="date"
+        placeholder="date"
+        value="<%= typeof name != 'undefined' ? date : '' %>"
+        />
+    
+    </div>
+    <div>
+        <label for="">Insert ID you want to delete</label>
+        <input
+        type="id"
+        name="id"
+        placeholder="Add ID"
+        value="<%= typeof name != 'undefined' ? id : '' %>"
+        />
+    </div>
+    
+        <button type="submit" class="btn btn-primary btn-block">
+        Update product
+      </button>
+    
+    
+    
+    
+</form>
+
