@@ -39,6 +39,15 @@
 
 <form action ="/users/update" method ="POST">
     <div>
+        <label for="">Insert ID you want to update</label>
+        <input
+        type="id"
+        name="id"
+        placeholder="Add ID"
+        value="<%= typeof name != 'undefined' ? id : '' %>"
+        />
+    </div>
+    <div>
         <label for="">title</label>
         <input
         type="title"
@@ -140,15 +149,7 @@
         />
     
     </div>
-    <div>
-        <label for="">Insert ID you want to delete</label>
-        <input
-        type="id"
-        name="id"
-        placeholder="Add ID"
-        value="<%= typeof name != 'undefined' ? id : '' %>"
-        />
-    </div>
+
     
         <button type="submit" class="btn btn-primary btn-block">
         Update product

@@ -9,6 +9,7 @@ const passport = require('passport');
 const { render } = require('ejs');
 const {ensureAuthenticated} = require("../config/auth.js");
 const e = require('express');
+mongoose.set('useFindAndModify', false);
 //login handle
 router.get('/login',(req,res)=>{
     res.render('login');
@@ -152,15 +153,16 @@ router.post('/delete', function(req, res, next) {
     res.redirect('/users/Products');
    });
 
-router.post('/update', function (req,res,next) {
+router.post('/update', function(req,res,next) {
+    const{title,description,category,location,images,asking_price,delivery_type,
+    name,phone_number,date} = req.body;
     var id = req.body.id;
-    Product.findById(id, function (err,doc) {
-        if (err) {return err;}
-        doc.title = 'Testi';
-    })
+    Product.findByIdAndUpdate(id, {title: title, description:description,category:category,location:location,images:images,asking_price:asking_price,
+    delivery_type:delivery_type,name:name,phone_number:phone_number,date}).exec();
+res.redirect('/users/Products');
+
 
 })
-
 
 
 
